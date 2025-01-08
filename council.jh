@@ -8,7 +8,7 @@
  * @author The JHipster team.
  */
 entity Practitioner {
-title Title
+    title Title
 	firstname String
     surname String
 	previousSurname String
