@@ -1,0 +1,71 @@
+
+
+// an ignored comment
+/** not an ignored comment */
+
+/**
+ * Task entity.
+ * @author The JHipster team.
+ */
+entity Practitioner {
+title Title
+	firstname String
+    surname String
+	previousSurname String
+	dob LocalDate
+    gender Gender
+    qualification Qualification
+    trainingLocation TrainingLocation
+    placeOfBirthTown String
+    placeOfCountry String
+	nationalID String
+    nationality String
+    applicationFee String
+    approved String
+    reasonNotApproved String
+    dateOfApplication String
+    regstrationNumber String
+    areaOfEmployment String
+}
+
+entity Qualification{
+	qualification String
+    nameOfInstitute String
+    dateFrom LocalDate
+    dateTo LocalDate
+    awardedBy LocalDate
+    wardedDate LocalDate
+}
+
+relationship ManyToOne {
+  Qualification{Practioner} to Practioner{Qualification}
+}
+
+enum Gender {
+MALE, FEMALE, UNKNOWN
+}
+enum Title {
+MR, MRS, MISS, MS, DR, MALE, FEMALE
+}
+enum PractitionerTYpe {
+STUDENTSCIENTIST, STUDENTDOCTOR, SCIENTIST, MEDICALPRACTIIONER, UNKNOWN
+}
+enum Qualification {
+STUDENT, MEDICALPRACTIIONER, UNKNOWN
+}
+
+enum TrainingLocation {
+INCOUNTRY, OUTSIDE, UNKNOWN
+}
+
+
+paginate * with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Location
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
