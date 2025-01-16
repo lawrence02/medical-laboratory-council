@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250116203116"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "documentation": "The survivorId attribute.",
+      "fieldName": "resourceType",
+      "fieldType": "ResourceType",
+      "fieldValues": "Water,Food,Medication,Ammunition"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Resource",
+  "relationships": [
+    {
+      "otherEntityName": "survivor",
+      "relationshipName": "survivor",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
