@@ -50,6 +50,9 @@ public class CacheConfiguration {
             createCache(cm, com.medical.lab.council.domain.User.class.getName());
             createCache(cm, com.medical.lab.council.domain.Authority.class.getName());
             createCache(cm, com.medical.lab.council.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.medical.lab.council.domain.Survivor.class.getName());
+            createCache(cm, com.medical.lab.council.domain.Survivor.class.getName() + ".resources");
+            createCache(cm, com.medical.lab.council.domain.Resource.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

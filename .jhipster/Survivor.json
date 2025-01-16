@@ -1,0 +1,52 @@
+{
+  "annotations": {
+    "changelogDate": "20250116203115"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "documentation": "The survivorId attribute.",
+      "fieldName": "survivorId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "Male,Female,Unknown"
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "InfectionStatus",
+      "fieldValues": "Normal,Infected,Contaminated"
+    }
+  ],
+  "name": "Survivor",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "resource",
+      "otherEntityRelationshipName": "survivor",
+      "relationshipName": "resource",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
