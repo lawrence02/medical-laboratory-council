@@ -1,0 +1,10 @@
+{
+  "medicalLaboratoryCouncilApp": {
+    "MaritalStatus": {
+      "null": "",
+      "Married": "Married",
+      "Single": "Single",
+      "Other": "Other"
+    }
+  }
+}

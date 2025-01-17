@@ -2,13 +2,15 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ISurvivor } from '../survivor.model';
 import { sampleWithFullData, sampleWithNewData, sampleWithPartialData, sampleWithRequiredData } from '../survivor.test-samples';
 
-import { SurvivorService } from './survivor.service';
+import { RestSurvivor, SurvivorService } from './survivor.service';
 
-const requireRestSample: ISurvivor = {
+const requireRestSample: RestSurvivor = {
   ...sampleWithRequiredData,
+  dob: sampleWithRequiredData.dob?.format(DATE_FORMAT),
 };
 
 describe('Survivor Service', () => {

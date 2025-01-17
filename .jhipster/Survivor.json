@@ -6,34 +6,119 @@
   "fields": [
     {
       "documentation": "The survivorId attribute.",
-      "fieldName": "survivorId",
+      "fieldName": "registrationNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "surname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "forenames",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "previousSurname",
       "fieldType": "String"
     },
     {
-      "fieldName": "name",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "age",
-      "fieldType": "Integer"
+      "fieldName": "dob",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "gender",
       "fieldType": "Gender",
+      "fieldValidateRules": ["required"],
       "fieldValues": "Male,Female,Unknown"
     },
     {
-      "fieldName": "latitude",
+      "fieldName": "placeOfBirthTown",
       "fieldType": "String"
     },
     {
-      "fieldName": "longitude",
+      "fieldName": "placeOfBirthCountry",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationality",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "maritalStatus",
+      "fieldType": "MaritalStatus",
+      "fieldValues": "Married,Single,Other"
+    },
+    {
+      "fieldName": "residentialAddress1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "residentialAddress2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "residentialAddress3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "homePhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "workPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cellPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nameOfPlaceOfEmployment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employerAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employerEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfEmployment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reasonForNonEmployment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfApplication",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "applicationFee",
       "fieldType": "String"
     },
     {
       "fieldName": "status",
-      "fieldType": "InfectionStatus",
-      "fieldValues": "Normal,Infected,Contaminated"
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reasonNotApproved",
+      "fieldType": "String"
     }
   ],
   "name": "Survivor",
