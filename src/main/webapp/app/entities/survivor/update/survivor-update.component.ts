@@ -7,10 +7,11 @@ import { finalize } from 'rxjs/operators';
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { Title } from 'app/entities/enumerations/title.model';
 import { Gender } from 'app/entities/enumerations/gender.model';
-import { InfectionStatus } from 'app/entities/enumerations/infection-status.model';
-import { ISurvivor } from '../survivor.model';
+import { MaritalStatus } from 'app/entities/enumerations/marital-status.model';
 import { SurvivorService } from '../service/survivor.service';
+import { ISurvivor } from '../survivor.model';
 import { SurvivorFormGroup, SurvivorFormService } from './survivor-form.service';
 
 @Component({
@@ -21,8 +22,9 @@ import { SurvivorFormGroup, SurvivorFormService } from './survivor-form.service'
 export class SurvivorUpdateComponent implements OnInit {
   isSaving = false;
   survivor: ISurvivor | null = null;
+  titleValues = Object.keys(Title);
   genderValues = Object.keys(Gender);
-  infectionStatusValues = Object.keys(InfectionStatus);
+  maritalStatusValues = Object.keys(MaritalStatus);
 
   protected survivorService = inject(SurvivorService);
   protected survivorFormService = inject(SurvivorFormService);

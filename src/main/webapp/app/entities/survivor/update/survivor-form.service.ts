@@ -18,13 +18,34 @@ type SurvivorFormDefaults = Pick<NewSurvivor, 'id'>;
 
 type SurvivorFormGroupContent = {
   id: FormControl<ISurvivor['id'] | NewSurvivor['id']>;
-  survivorId: FormControl<ISurvivor['survivorId']>;
-  name: FormControl<ISurvivor['name']>;
-  age: FormControl<ISurvivor['age']>;
+  registrationNumber: FormControl<ISurvivor['registrationNumber']>;
+  title: FormControl<ISurvivor['title']>;
+  surname: FormControl<ISurvivor['surname']>;
+  forenames: FormControl<ISurvivor['forenames']>;
+  previousSurname: FormControl<ISurvivor['previousSurname']>;
+  dob: FormControl<ISurvivor['dob']>;
   gender: FormControl<ISurvivor['gender']>;
-  latitude: FormControl<ISurvivor['latitude']>;
-  longitude: FormControl<ISurvivor['longitude']>;
+  placeOfBirthTown: FormControl<ISurvivor['placeOfBirthTown']>;
+  placeOfBirthCountry: FormControl<ISurvivor['placeOfBirthCountry']>;
+  nationality: FormControl<ISurvivor['nationality']>;
+  nationalId: FormControl<ISurvivor['nationalId']>;
+  maritalStatus: FormControl<ISurvivor['maritalStatus']>;
+  residentialAddress1: FormControl<ISurvivor['residentialAddress1']>;
+  residentialAddress2: FormControl<ISurvivor['residentialAddress2']>;
+  residentialAddress3: FormControl<ISurvivor['residentialAddress3']>;
+  homePhone: FormControl<ISurvivor['homePhone']>;
+  workPhone: FormControl<ISurvivor['workPhone']>;
+  cellPhone: FormControl<ISurvivor['cellPhone']>;
+  emailAddress: FormControl<ISurvivor['emailAddress']>;
+  nameOfPlaceOfEmployment: FormControl<ISurvivor['nameOfPlaceOfEmployment']>;
+  employerAddress: FormControl<ISurvivor['employerAddress']>;
+  employerEmail: FormControl<ISurvivor['employerEmail']>;
+  dateOfEmployment: FormControl<ISurvivor['dateOfEmployment']>;
+  reasonForNonEmployment: FormControl<ISurvivor['reasonForNonEmployment']>;
+  dateOfApplication: FormControl<ISurvivor['dateOfApplication']>;
+  applicationFee: FormControl<ISurvivor['applicationFee']>;
   status: FormControl<ISurvivor['status']>;
+  reasonNotApproved: FormControl<ISurvivor['reasonNotApproved']>;
 };
 
 export type SurvivorFormGroup = FormGroup<SurvivorFormGroupContent>;
@@ -44,13 +65,44 @@ export class SurvivorFormService {
           validators: [Validators.required],
         },
       ),
-      survivorId: new FormControl(survivorRawValue.survivorId),
-      name: new FormControl(survivorRawValue.name),
-      age: new FormControl(survivorRawValue.age),
-      gender: new FormControl(survivorRawValue.gender),
-      latitude: new FormControl(survivorRawValue.latitude),
-      longitude: new FormControl(survivorRawValue.longitude),
+      registrationNumber: new FormControl(survivorRawValue.registrationNumber, {
+        validators: [Validators.required],
+      }),
+      title: new FormControl(survivorRawValue.title),
+      surname: new FormControl(survivorRawValue.surname, {
+        validators: [Validators.required],
+      }),
+      forenames: new FormControl(survivorRawValue.forenames, {
+        validators: [Validators.required],
+      }),
+      previousSurname: new FormControl(survivorRawValue.previousSurname),
+      dob: new FormControl(survivorRawValue.dob, {
+        validators: [Validators.required],
+      }),
+      gender: new FormControl(survivorRawValue.gender, {
+        validators: [Validators.required],
+      }),
+      placeOfBirthTown: new FormControl(survivorRawValue.placeOfBirthTown),
+      placeOfBirthCountry: new FormControl(survivorRawValue.placeOfBirthCountry),
+      nationality: new FormControl(survivorRawValue.nationality),
+      nationalId: new FormControl(survivorRawValue.nationalId),
+      maritalStatus: new FormControl(survivorRawValue.maritalStatus),
+      residentialAddress1: new FormControl(survivorRawValue.residentialAddress1),
+      residentialAddress2: new FormControl(survivorRawValue.residentialAddress2),
+      residentialAddress3: new FormControl(survivorRawValue.residentialAddress3),
+      homePhone: new FormControl(survivorRawValue.homePhone),
+      workPhone: new FormControl(survivorRawValue.workPhone),
+      cellPhone: new FormControl(survivorRawValue.cellPhone),
+      emailAddress: new FormControl(survivorRawValue.emailAddress),
+      nameOfPlaceOfEmployment: new FormControl(survivorRawValue.nameOfPlaceOfEmployment),
+      employerAddress: new FormControl(survivorRawValue.employerAddress),
+      employerEmail: new FormControl(survivorRawValue.employerEmail),
+      dateOfEmployment: new FormControl(survivorRawValue.dateOfEmployment),
+      reasonForNonEmployment: new FormControl(survivorRawValue.reasonForNonEmployment),
+      dateOfApplication: new FormControl(survivorRawValue.dateOfApplication),
+      applicationFee: new FormControl(survivorRawValue.applicationFee),
       status: new FormControl(survivorRawValue.status),
+      reasonNotApproved: new FormControl(survivorRawValue.reasonNotApproved),
     });
   }
 
