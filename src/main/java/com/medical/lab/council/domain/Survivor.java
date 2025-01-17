@@ -1,8 +1,6 @@
 package com.medical.lab.council.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.medical.lab.council.domain.enumeration.Gender;
-import com.medical.lab.council.domain.enumeration.InfectionStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -31,28 +29,8 @@ public class Survivor implements Serializable {
      * The survivorId attribute.
      */
     @Schema(description = "The survivorId attribute.")
-    @Column(name = "survivor_id")
-    private String survivorId;
-
     @Column(name = "name")
     private String name;
-
-    @Column(name = "age")
-    private Integer age;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private Gender gender;
-
-    @Column(name = "latitude")
-    private String latitude;
-
-    @Column(name = "longitude")
-    private String longitude;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private InfectionStatus status;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "survivor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -74,19 +52,6 @@ public class Survivor implements Serializable {
         this.id = id;
     }
 
-    public String getSurvivorId() {
-        return this.survivorId;
-    }
-
-    public Survivor survivorId(String survivorId) {
-        this.setSurvivorId(survivorId);
-        return this;
-    }
-
-    public void setSurvivorId(String survivorId) {
-        this.survivorId = survivorId;
-    }
-
     public String getName() {
         return this.name;
     }
@@ -98,71 +63,6 @@ public class Survivor implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return this.age;
-    }
-
-    public Survivor age(Integer age) {
-        this.setAge(age);
-        return this;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Gender getGender() {
-        return this.gender;
-    }
-
-    public Survivor gender(Gender gender) {
-        this.setGender(gender);
-        return this;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getLatitude() {
-        return this.latitude;
-    }
-
-    public Survivor latitude(String latitude) {
-        this.setLatitude(latitude);
-        return this;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return this.longitude;
-    }
-
-    public Survivor longitude(String longitude) {
-        this.setLongitude(longitude);
-        return this;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public InfectionStatus getStatus() {
-        return this.status;
-    }
-
-    public Survivor status(InfectionStatus status) {
-        this.setStatus(status);
-        return this;
-    }
-
-    public void setStatus(InfectionStatus status) {
-        this.status = status;
     }
 
     public Set<Resource> getResources() {
@@ -220,13 +120,7 @@ public class Survivor implements Serializable {
     public String toString() {
         return "Survivor{" +
             "id=" + getId() +
-            ", survivorId='" + getSurvivorId() + "'" +
             ", name='" + getName() + "'" +
-            ", age=" + getAge() +
-            ", gender='" + getGender() + "'" +
-            ", latitude='" + getLatitude() + "'" +
-            ", longitude='" + getLongitude() + "'" +
-            ", status='" + getStatus() + "'" +
             "}";
     }
 }

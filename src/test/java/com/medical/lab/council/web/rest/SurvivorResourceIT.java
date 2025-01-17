@@ -10,8 +10,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medical.lab.council.IntegrationTest;
 import com.medical.lab.council.domain.Survivor;
-import com.medical.lab.council.domain.enumeration.Gender;
-import com.medical.lab.council.domain.enumeration.InfectionStatus;
 import com.medical.lab.council.repository.SurvivorRepository;
 import jakarta.persistence.EntityManager;
 import java.util.Random;
@@ -34,26 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class SurvivorResourceIT {
 
-    private static final String DEFAULT_SURVIVOR_ID = "AAAAAAAAAA";
-    private static final String UPDATED_SURVIVOR_ID = "BBBBBBBBBB";
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
-
-    private static final Integer DEFAULT_AGE = 1;
-    private static final Integer UPDATED_AGE = 2;
-
-    private static final Gender DEFAULT_GENDER = Gender.Male;
-    private static final Gender UPDATED_GENDER = Gender.Female;
-
-    private static final String DEFAULT_LATITUDE = "AAAAAAAAAA";
-    private static final String UPDATED_LATITUDE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_LONGITUDE = "AAAAAAAAAA";
-    private static final String UPDATED_LONGITUDE = "BBBBBBBBBB";
-
-    private static final InfectionStatus DEFAULT_STATUS = InfectionStatus.Normal;
-    private static final InfectionStatus UPDATED_STATUS = InfectionStatus.Infected;
 
     private static final String ENTITY_API_URL = "/api/survivors";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -84,14 +64,7 @@ class SurvivorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Survivor createEntity() {
-        return new Survivor()
-            .survivorId(DEFAULT_SURVIVOR_ID)
-            .name(DEFAULT_NAME)
-            .age(DEFAULT_AGE)
-            .gender(DEFAULT_GENDER)
-            .latitude(DEFAULT_LATITUDE)
-            .longitude(DEFAULT_LONGITUDE)
-            .status(DEFAULT_STATUS);
+        return new Survivor().name(DEFAULT_NAME);
     }
 
     /**
@@ -101,14 +74,7 @@ class SurvivorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Survivor createUpdatedEntity() {
-        return new Survivor()
-            .survivorId(UPDATED_SURVIVOR_ID)
-            .name(UPDATED_NAME)
-            .age(UPDATED_AGE)
-            .gender(UPDATED_GENDER)
-            .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE)
-            .status(UPDATED_STATUS);
+        return new Survivor().name(UPDATED_NAME);
     }
 
     @BeforeEach
@@ -175,13 +141,7 @@ class SurvivorResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(survivor.getId().intValue())))
-            .andExpect(jsonPath("$.[*].survivorId").value(hasItem(DEFAULT_SURVIVOR_ID)))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE)))
-            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE)))
-            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE)))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
     }
 
     @Test
@@ -196,13 +156,7 @@ class SurvivorResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(survivor.getId().intValue()))
-            .andExpect(jsonPath("$.survivorId").value(DEFAULT_SURVIVOR_ID))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.age").value(DEFAULT_AGE))
-            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
-            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE))
-            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
     }
 
     @Test
@@ -224,14 +178,7 @@ class SurvivorResourceIT {
         Survivor updatedSurvivor = survivorRepository.findById(survivor.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedSurvivor are not directly saved in db
         em.detach(updatedSurvivor);
-        updatedSurvivor
-            .survivorId(UPDATED_SURVIVOR_ID)
-            .name(UPDATED_NAME)
-            .age(UPDATED_AGE)
-            .gender(UPDATED_GENDER)
-            .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE)
-            .status(UPDATED_STATUS);
+        updatedSurvivor.name(UPDATED_NAME);
 
         restSurvivorMockMvc
             .perform(
@@ -309,8 +256,6 @@ class SurvivorResourceIT {
         Survivor partialUpdatedSurvivor = new Survivor();
         partialUpdatedSurvivor.setId(survivor.getId());
 
-        partialUpdatedSurvivor.name(UPDATED_NAME).gender(UPDATED_GENDER).latitude(UPDATED_LATITUDE).status(UPDATED_STATUS);
-
         restSurvivorMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedSurvivor.getId())
@@ -337,14 +282,7 @@ class SurvivorResourceIT {
         Survivor partialUpdatedSurvivor = new Survivor();
         partialUpdatedSurvivor.setId(survivor.getId());
 
-        partialUpdatedSurvivor
-            .survivorId(UPDATED_SURVIVOR_ID)
-            .name(UPDATED_NAME)
-            .age(UPDATED_AGE)
-            .gender(UPDATED_GENDER)
-            .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE)
-            .status(UPDATED_STATUS);
+        partialUpdatedSurvivor.name(UPDATED_NAME);
 
         restSurvivorMockMvc
             .perform(
