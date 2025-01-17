@@ -45,26 +45,92 @@ public class SurvivorServiceImpl implements SurvivorService {
         return survivorRepository
             .findById(survivor.getId())
             .map(existingSurvivor -> {
-                if (survivor.getSurvivorId() != null) {
-                    existingSurvivor.setSurvivorId(survivor.getSurvivorId());
+                if (survivor.getPractitionerType() != null) {
+                    existingSurvivor.setPractitionerType(survivor.getPractitionerType());
                 }
-                if (survivor.getName() != null) {
-                    existingSurvivor.setName(survivor.getName());
+                if (survivor.getRegistrationNumber() != null) {
+                    existingSurvivor.setRegistrationNumber(survivor.getRegistrationNumber());
                 }
-                if (survivor.getAge() != null) {
-                    existingSurvivor.setAge(survivor.getAge());
+                if (survivor.getTitle() != null) {
+                    existingSurvivor.setTitle(survivor.getTitle());
+                }
+                if (survivor.getSurname() != null) {
+                    existingSurvivor.setSurname(survivor.getSurname());
+                }
+                if (survivor.getForenames() != null) {
+                    existingSurvivor.setForenames(survivor.getForenames());
+                }
+                if (survivor.getPreviousSurname() != null) {
+                    existingSurvivor.setPreviousSurname(survivor.getPreviousSurname());
+                }
+                if (survivor.getDob() != null) {
+                    existingSurvivor.setDob(survivor.getDob());
                 }
                 if (survivor.getGender() != null) {
                     existingSurvivor.setGender(survivor.getGender());
                 }
-                if (survivor.getLatitude() != null) {
-                    existingSurvivor.setLatitude(survivor.getLatitude());
+                if (survivor.getPlaceOfBirthTown() != null) {
+                    existingSurvivor.setPlaceOfBirthTown(survivor.getPlaceOfBirthTown());
                 }
-                if (survivor.getLongitude() != null) {
-                    existingSurvivor.setLongitude(survivor.getLongitude());
+                if (survivor.getPlaceOfBirthCountry() != null) {
+                    existingSurvivor.setPlaceOfBirthCountry(survivor.getPlaceOfBirthCountry());
+                }
+                if (survivor.getNationality() != null) {
+                    existingSurvivor.setNationality(survivor.getNationality());
+                }
+                if (survivor.getNationalId() != null) {
+                    existingSurvivor.setNationalId(survivor.getNationalId());
+                }
+                if (survivor.getMaritalStatus() != null) {
+                    existingSurvivor.setMaritalStatus(survivor.getMaritalStatus());
+                }
+                if (survivor.getResidentialAddress1() != null) {
+                    existingSurvivor.setResidentialAddress1(survivor.getResidentialAddress1());
+                }
+                if (survivor.getResidentialAddress2() != null) {
+                    existingSurvivor.setResidentialAddress2(survivor.getResidentialAddress2());
+                }
+                if (survivor.getResidentialAddress3() != null) {
+                    existingSurvivor.setResidentialAddress3(survivor.getResidentialAddress3());
+                }
+                if (survivor.getHomePhone() != null) {
+                    existingSurvivor.setHomePhone(survivor.getHomePhone());
+                }
+                if (survivor.getWorkPhone() != null) {
+                    existingSurvivor.setWorkPhone(survivor.getWorkPhone());
+                }
+                if (survivor.getCellPhone() != null) {
+                    existingSurvivor.setCellPhone(survivor.getCellPhone());
+                }
+                if (survivor.getEmailAddress() != null) {
+                    existingSurvivor.setEmailAddress(survivor.getEmailAddress());
+                }
+                if (survivor.getNameOfPlaceOfEmployment() != null) {
+                    existingSurvivor.setNameOfPlaceOfEmployment(survivor.getNameOfPlaceOfEmployment());
+                }
+                if (survivor.getEmployerAddress() != null) {
+                    existingSurvivor.setEmployerAddress(survivor.getEmployerAddress());
+                }
+                if (survivor.getEmployerEmail() != null) {
+                    existingSurvivor.setEmployerEmail(survivor.getEmployerEmail());
+                }
+                if (survivor.getDateOfEmployment() != null) {
+                    existingSurvivor.setDateOfEmployment(survivor.getDateOfEmployment());
+                }
+                if (survivor.getReasonForNonEmployment() != null) {
+                    existingSurvivor.setReasonForNonEmployment(survivor.getReasonForNonEmployment());
+                }
+                if (survivor.getDateOfApplication() != null) {
+                    existingSurvivor.setDateOfApplication(survivor.getDateOfApplication());
+                }
+                if (survivor.getApplicationFee() != null) {
+                    existingSurvivor.setApplicationFee(survivor.getApplicationFee());
                 }
                 if (survivor.getStatus() != null) {
                     existingSurvivor.setStatus(survivor.getStatus());
+                }
+                if (survivor.getReasonNotApproved() != null) {
+                    existingSurvivor.setReasonNotApproved(survivor.getReasonNotApproved());
                 }
 
                 return existingSurvivor;
