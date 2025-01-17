@@ -5,25 +5,13 @@ export const sampleWithRequiredData: ISurvivor = {
 };
 
 export const sampleWithPartialData: ISurvivor = {
-  id: 9462,
-  survivorId: 'oh',
-  name: 'bah against freely',
-  age: 24013,
-  gender: 'Unknown',
-  latitude: 'although yahoo inventory',
-  longitude: 'following with',
-  status: 'Infected',
+  id: 7840,
+  name: 'gadzooks',
 };
 
 export const sampleWithFullData: ISurvivor = {
   id: 5085,
-  survivorId: 'sediment inasmuch',
-  name: 'blah',
-  age: 27293,
-  gender: 'Unknown',
-  latitude: 'yet inasmuch translation',
-  longitude: 'ouch',
-  status: 'Normal',
+  name: 'sediment inasmuch',
 };
 
 export const sampleWithNewData: NewSurvivor = {

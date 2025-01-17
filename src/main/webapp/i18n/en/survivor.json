@@ -18,16 +18,10 @@
         "title": "Survivor"
       },
       "id": "ID",
-      "survivorId": "Survivor Id",
       "name": "Name",
-      "age": "Age",
-      "gender": "Gender",
-      "latitude": "Latitude",
-      "longitude": "Longitude",
-      "status": "Status",
       "resource": "Resource",
       "help": {
-        "survivorId": "The survivorId attribute."
+        "name": "The survivorId attribute."
       }
     }
   }

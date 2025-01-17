@@ -18,13 +18,7 @@ type SurvivorFormDefaults = Pick<NewSurvivor, 'id'>;
 
 type SurvivorFormGroupContent = {
   id: FormControl<ISurvivor['id'] | NewSurvivor['id']>;
-  survivorId: FormControl<ISurvivor['survivorId']>;
   name: FormControl<ISurvivor['name']>;
-  age: FormControl<ISurvivor['age']>;
-  gender: FormControl<ISurvivor['gender']>;
-  latitude: FormControl<ISurvivor['latitude']>;
-  longitude: FormControl<ISurvivor['longitude']>;
-  status: FormControl<ISurvivor['status']>;
 };
 
 export type SurvivorFormGroup = FormGroup<SurvivorFormGroupContent>;
@@ -44,13 +38,7 @@ export class SurvivorFormService {
           validators: [Validators.required],
         },
       ),
-      survivorId: new FormControl(survivorRawValue.survivorId),
       name: new FormControl(survivorRawValue.name),
-      age: new FormControl(survivorRawValue.age),
-      gender: new FormControl(survivorRawValue.gender),
-      latitude: new FormControl(survivorRawValue.latitude),
-      longitude: new FormControl(survivorRawValue.longitude),
-      status: new FormControl(survivorRawValue.status),
     });
   }
 
