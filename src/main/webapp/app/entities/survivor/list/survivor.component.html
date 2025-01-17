@@ -40,23 +40,37 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="survivorId">
+            <th scope="col" jhiSortBy="registrationNumber">
               <div class="d-flex">
-                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.survivorId">Survivor Id</span>
+                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.registrationNumber">Registration Number</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="name">
+            <th scope="col" jhiSortBy="surname">
               <div class="d-flex">
-                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.name">Name</span>
+                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.surname">Surname</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="age">
+            <th scope="col" jhiSortBy="forenames">
               <div class="d-flex">
-                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.age">Age</span>
+                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.forenames">Forenames</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="previousSurname">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.previousSurname">Previous Surname</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dob">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.dob">Dob</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -64,27 +78,6 @@
             <th scope="col" jhiSortBy="gender">
               <div class="d-flex">
                 <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.gender">Gender</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="latitude">
-              <div class="d-flex">
-                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.latitude">Latitude</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="longitude">
-              <div class="d-flex">
-                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.longitude">Longitude</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="status">
-              <div class="d-flex">
-                <span jhiTranslate="medicalLaboratoryCouncilApp.survivor.status">Status</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -98,16 +91,13 @@
               <td>
                 <a [routerLink]="['/survivor', survivor.id, 'view']">{{ survivor.id }}</a>
               </td>
-              <td>{{ survivor.survivorId }}</td>
-              <td>{{ survivor.name }}</td>
-              <td>{{ survivor.age }}</td>
+              <td>{{ survivor.registrationNumber }}</td>
+              <td>{{ survivor.surname }}</td>
+              <td>{{ survivor.forenames }}</td>
+              <td>{{ survivor.previousSurname }}</td>
+              <td>{{ survivor.dob | formatMediumDate }}</td>
               <td [jhiTranslate]="'medicalLaboratoryCouncilApp.Gender.' + (survivor.gender ?? 'null')">
                 {{ { null: '', Male: 'Male', Female: 'Female', Unknown: 'Unknown' }[survivor.gender ?? 'null'] }}
-              </td>
-              <td>{{ survivor.latitude }}</td>
-              <td>{{ survivor.longitude }}</td>
-              <td [jhiTranslate]="'medicalLaboratoryCouncilApp.InfectionStatus.' + (survivor.status ?? 'null')">
-                {{ { null: '', Normal: 'Normal', Infected: 'Infected', Contaminated: 'Contaminated' }[survivor.status ?? 'null'] }}
               </td>
               <td class="text-end">
                 <div class="btn-group">

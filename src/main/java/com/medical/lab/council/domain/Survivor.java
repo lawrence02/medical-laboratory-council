@@ -2,10 +2,11 @@ package com.medical.lab.council.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.medical.lab.council.domain.enumeration.Gender;
-import com.medical.lab.council.domain.enumeration.InfectionStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import org.hibernate.annotations.Cache;
@@ -30,29 +31,30 @@ public class Survivor implements Serializable {
     /**
      * The survivorId attribute.
      */
-    @Schema(description = "The survivorId attribute.")
-    @Column(name = "survivor_id")
-    private String survivorId;
+    @Schema(description = "The survivorId attribute.", required = true)
+    @NotNull
+    @Column(name = "registration_number", nullable = false)
+    private String registrationNumber;
 
-    @Column(name = "name")
-    private String name;
+    @NotNull
+    @Column(name = "surname", nullable = false)
+    private String surname;
 
-    @Column(name = "age")
-    private Integer age;
+    @NotNull
+    @Column(name = "forenames", nullable = false)
+    private String forenames;
 
+    @Column(name = "previous_surname")
+    private String previousSurname;
+
+    @NotNull
+    @Column(name = "dob", nullable = false)
+    private LocalDate dob;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
+    @Column(name = "gender", nullable = false)
     private Gender gender;
-
-    @Column(name = "latitude")
-    private String latitude;
-
-    @Column(name = "longitude")
-    private String longitude;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private InfectionStatus status;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "survivor")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -74,43 +76,69 @@ public class Survivor implements Serializable {
         this.id = id;
     }
 
-    public String getSurvivorId() {
-        return this.survivorId;
+    public String getRegistrationNumber() {
+        return this.registrationNumber;
     }
 
-    public Survivor survivorId(String survivorId) {
-        this.setSurvivorId(survivorId);
+    public Survivor registrationNumber(String registrationNumber) {
+        this.setRegistrationNumber(registrationNumber);
         return this;
     }
 
-    public void setSurvivorId(String survivorId) {
-        this.survivorId = survivorId;
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
-    public String getName() {
-        return this.name;
+    public String getSurname() {
+        return this.surname;
     }
 
-    public Survivor name(String name) {
-        this.setName(name);
+    public Survivor surname(String surname) {
+        this.setSurname(surname);
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public Integer getAge() {
-        return this.age;
+    public String getForenames() {
+        return this.forenames;
     }
 
-    public Survivor age(Integer age) {
-        this.setAge(age);
+    public Survivor forenames(String forenames) {
+        this.setForenames(forenames);
         return this;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setForenames(String forenames) {
+        this.forenames = forenames;
+    }
+
+    public String getPreviousSurname() {
+        return this.previousSurname;
+    }
+
+    public Survivor previousSurname(String previousSurname) {
+        this.setPreviousSurname(previousSurname);
+        return this;
+    }
+
+    public void setPreviousSurname(String previousSurname) {
+        this.previousSurname = previousSurname;
+    }
+
+    public LocalDate getDob() {
+        return this.dob;
+    }
+
+    public Survivor dob(LocalDate dob) {
+        this.setDob(dob);
+        return this;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
 
     public Gender getGender() {
@@ -124,45 +152,6 @@ public class Survivor implements Serializable {
 
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-    public String getLatitude() {
-        return this.latitude;
-    }
-
-    public Survivor latitude(String latitude) {
-        this.setLatitude(latitude);
-        return this;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return this.longitude;
-    }
-
-    public Survivor longitude(String longitude) {
-        this.setLongitude(longitude);
-        return this;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
-
-    public InfectionStatus getStatus() {
-        return this.status;
-    }
-
-    public Survivor status(InfectionStatus status) {
-        this.setStatus(status);
-        return this;
-    }
-
-    public void setStatus(InfectionStatus status) {
-        this.status = status;
     }
 
     public Set<Resource> getResources() {
@@ -220,13 +209,12 @@ public class Survivor implements Serializable {
     public String toString() {
         return "Survivor{" +
             "id=" + getId() +
-            ", survivorId='" + getSurvivorId() + "'" +
-            ", name='" + getName() + "'" +
-            ", age=" + getAge() +
+            ", registrationNumber='" + getRegistrationNumber() + "'" +
+            ", surname='" + getSurname() + "'" +
+            ", forenames='" + getForenames() + "'" +
+            ", previousSurname='" + getPreviousSurname() + "'" +
+            ", dob='" + getDob() + "'" +
             ", gender='" + getGender() + "'" +
-            ", latitude='" + getLatitude() + "'" +
-            ", longitude='" + getLongitude() + "'" +
-            ", status='" + getStatus() + "'" +
             "}";
     }
 }

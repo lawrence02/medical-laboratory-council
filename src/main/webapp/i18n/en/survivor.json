@@ -18,16 +18,15 @@
         "title": "Survivor"
       },
       "id": "ID",
-      "survivorId": "Survivor Id",
-      "name": "Name",
-      "age": "Age",
+      "registrationNumber": "Registration Number",
+      "surname": "Surname",
+      "forenames": "Forenames",
+      "previousSurname": "Previous Surname",
+      "dob": "Dob",
       "gender": "Gender",
-      "latitude": "Latitude",
-      "longitude": "Longitude",
-      "status": "Status",
       "resource": "Resource",
       "help": {
-        "survivorId": "The survivorId attribute."
+        "registrationNumber": "The survivorId attribute."
       }
     }
   }

@@ -45,26 +45,23 @@ public class SurvivorServiceImpl implements SurvivorService {
         return survivorRepository
             .findById(survivor.getId())
             .map(existingSurvivor -> {
-                if (survivor.getSurvivorId() != null) {
-                    existingSurvivor.setSurvivorId(survivor.getSurvivorId());
+                if (survivor.getRegistrationNumber() != null) {
+                    existingSurvivor.setRegistrationNumber(survivor.getRegistrationNumber());
                 }
-                if (survivor.getName() != null) {
-                    existingSurvivor.setName(survivor.getName());
+                if (survivor.getSurname() != null) {
+                    existingSurvivor.setSurname(survivor.getSurname());
                 }
-                if (survivor.getAge() != null) {
-                    existingSurvivor.setAge(survivor.getAge());
+                if (survivor.getForenames() != null) {
+                    existingSurvivor.setForenames(survivor.getForenames());
+                }
+                if (survivor.getPreviousSurname() != null) {
+                    existingSurvivor.setPreviousSurname(survivor.getPreviousSurname());
+                }
+                if (survivor.getDob() != null) {
+                    existingSurvivor.setDob(survivor.getDob());
                 }
                 if (survivor.getGender() != null) {
                     existingSurvivor.setGender(survivor.getGender());
-                }
-                if (survivor.getLatitude() != null) {
-                    existingSurvivor.setLatitude(survivor.getLatitude());
-                }
-                if (survivor.getLongitude() != null) {
-                    existingSurvivor.setLongitude(survivor.getLongitude());
-                }
-                if (survivor.getStatus() != null) {
-                    existingSurvivor.setStatus(survivor.getStatus());
                 }
 
                 return existingSurvivor;

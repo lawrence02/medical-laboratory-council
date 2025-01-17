@@ -18,13 +18,12 @@ type SurvivorFormDefaults = Pick<NewSurvivor, 'id'>;
 
 type SurvivorFormGroupContent = {
   id: FormControl<ISurvivor['id'] | NewSurvivor['id']>;
-  survivorId: FormControl<ISurvivor['survivorId']>;
-  name: FormControl<ISurvivor['name']>;
-  age: FormControl<ISurvivor['age']>;
+  registrationNumber: FormControl<ISurvivor['registrationNumber']>;
+  surname: FormControl<ISurvivor['surname']>;
+  forenames: FormControl<ISurvivor['forenames']>;
+  previousSurname: FormControl<ISurvivor['previousSurname']>;
+  dob: FormControl<ISurvivor['dob']>;
   gender: FormControl<ISurvivor['gender']>;
-  latitude: FormControl<ISurvivor['latitude']>;
-  longitude: FormControl<ISurvivor['longitude']>;
-  status: FormControl<ISurvivor['status']>;
 };
 
 export type SurvivorFormGroup = FormGroup<SurvivorFormGroupContent>;
@@ -44,13 +43,22 @@ export class SurvivorFormService {
           validators: [Validators.required],
         },
       ),
-      survivorId: new FormControl(survivorRawValue.survivorId),
-      name: new FormControl(survivorRawValue.name),
-      age: new FormControl(survivorRawValue.age),
-      gender: new FormControl(survivorRawValue.gender),
-      latitude: new FormControl(survivorRawValue.latitude),
-      longitude: new FormControl(survivorRawValue.longitude),
-      status: new FormControl(survivorRawValue.status),
+      registrationNumber: new FormControl(survivorRawValue.registrationNumber, {
+        validators: [Validators.required],
+      }),
+      surname: new FormControl(survivorRawValue.surname, {
+        validators: [Validators.required],
+      }),
+      forenames: new FormControl(survivorRawValue.forenames, {
+        validators: [Validators.required],
+      }),
+      previousSurname: new FormControl(survivorRawValue.previousSurname),
+      dob: new FormControl(survivorRawValue.dob, {
+        validators: [Validators.required],
+      }),
+      gender: new FormControl(survivorRawValue.gender, {
+        validators: [Validators.required],
+      }),
     });
   }
 

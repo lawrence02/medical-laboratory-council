@@ -47,13 +47,12 @@ public class SurvivorAsserts {
     public static void assertSurvivorUpdatableFieldsEquals(Survivor expected, Survivor actual) {
         assertThat(expected)
             .as("Verify Survivor relevant properties")
-            .satisfies(e -> assertThat(e.getSurvivorId()).as("check survivorId").isEqualTo(actual.getSurvivorId()))
-            .satisfies(e -> assertThat(e.getName()).as("check name").isEqualTo(actual.getName()))
-            .satisfies(e -> assertThat(e.getAge()).as("check age").isEqualTo(actual.getAge()))
-            .satisfies(e -> assertThat(e.getGender()).as("check gender").isEqualTo(actual.getGender()))
-            .satisfies(e -> assertThat(e.getLatitude()).as("check latitude").isEqualTo(actual.getLatitude()))
-            .satisfies(e -> assertThat(e.getLongitude()).as("check longitude").isEqualTo(actual.getLongitude()))
-            .satisfies(e -> assertThat(e.getStatus()).as("check status").isEqualTo(actual.getStatus()));
+            .satisfies(e -> assertThat(e.getRegistrationNumber()).as("check registrationNumber").isEqualTo(actual.getRegistrationNumber()))
+            .satisfies(e -> assertThat(e.getSurname()).as("check surname").isEqualTo(actual.getSurname()))
+            .satisfies(e -> assertThat(e.getForenames()).as("check forenames").isEqualTo(actual.getForenames()))
+            .satisfies(e -> assertThat(e.getPreviousSurname()).as("check previousSurname").isEqualTo(actual.getPreviousSurname()))
+            .satisfies(e -> assertThat(e.getDob()).as("check dob").isEqualTo(actual.getDob()))
+            .satisfies(e -> assertThat(e.getGender()).as("check gender").isEqualTo(actual.getGender()));
     }
 
     /**

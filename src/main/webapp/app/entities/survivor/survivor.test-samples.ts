@@ -1,32 +1,42 @@
+import dayjs from 'dayjs/esm';
+
 import { ISurvivor, NewSurvivor } from './survivor.model';
 
 export const sampleWithRequiredData: ISurvivor = {
   id: 8744,
+  registrationNumber: 'exacerbate boo geez',
+  surname: 'ordinary',
+  forenames: 'whoa mmm satirise',
+  dob: dayjs('2025-01-16'),
+  gender: 'Male',
 };
 
 export const sampleWithPartialData: ISurvivor = {
-  id: 9462,
-  survivorId: 'oh',
-  name: 'bah against freely',
-  age: 24013,
-  gender: 'Unknown',
-  latitude: 'although yahoo inventory',
-  longitude: 'following with',
-  status: 'Infected',
+  id: 7840,
+  registrationNumber: 'gadzooks',
+  surname: 'across accompanist',
+  forenames: 'shark yet since',
+  previousSurname: 'yahoo',
+  dob: dayjs('2025-01-16'),
+  gender: 'Male',
 };
 
 export const sampleWithFullData: ISurvivor = {
   id: 5085,
-  survivorId: 'sediment inasmuch',
-  name: 'blah',
-  age: 27293,
+  registrationNumber: 'sediment inasmuch',
+  surname: 'blah',
+  forenames: 'consequently likely hope',
+  previousSurname: 'truthfully',
+  dob: dayjs('2025-01-16'),
   gender: 'Unknown',
-  latitude: 'yet inasmuch translation',
-  longitude: 'ouch',
-  status: 'Normal',
 };
 
 export const sampleWithNewData: NewSurvivor = {
+  registrationNumber: 'fooey consequently',
+  surname: 'geez',
+  forenames: 'progress wherever',
+  dob: dayjs('2025-01-15'),
+  gender: 'Female',
   id: null,
 };
 
