@@ -4,21 +4,21 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject, of } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { sampleWithRequiredData } from '../resource.test-samples';
-import { ResourceService } from '../service/resource.service';
+import { sampleWithRequiredData } from '../practitioner.test-samples';
+import { PractitionerService } from '../service/practitioner.service';
 
-import { ResourceComponent } from './resource.component';
+import { PractitionerComponent } from './practitioner.component';
 import SpyInstance = jest.SpyInstance;
 
-describe('Resource Management Component', () => {
-  let comp: ResourceComponent;
-  let fixture: ComponentFixture<ResourceComponent>;
-  let service: ResourceService;
+describe('Practitioner Management Component', () => {
+  let comp: PractitionerComponent;
+  let fixture: ComponentFixture<PractitionerComponent>;
+  let service: PractitionerService;
   let routerNavigateSpy: SpyInstance<Promise<boolean>>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ResourceComponent],
+      imports: [PractitionerComponent],
       providers: [
         provideHttpClient(),
         {
@@ -46,12 +46,12 @@ describe('Resource Management Component', () => {
         },
       ],
     })
-      .overrideTemplate(ResourceComponent, '')
+      .overrideTemplate(PractitionerComponent, '')
       .compileComponents();
 
-    fixture = TestBed.createComponent(ResourceComponent);
+    fixture = TestBed.createComponent(PractitionerComponent);
     comp = fixture.componentInstance;
-    service = TestBed.inject(ResourceService);
+    service = TestBed.inject(PractitionerService);
     routerNavigateSpy = jest.spyOn(comp.router, 'navigate');
 
     jest
@@ -59,7 +59,7 @@ describe('Resource Management Component', () => {
       .mockReturnValueOnce(
         of(
           new HttpResponse({
-            body: [{ id: 12681 }],
+            body: [{ id: 27164 }],
             headers: new HttpHeaders({
               link: '<http://localhost/api/foo?page=1&size=20>; rel="next"',
             }),
@@ -69,7 +69,7 @@ describe('Resource Management Component', () => {
       .mockReturnValueOnce(
         of(
           new HttpResponse({
-            body: [{ id: 18114 }],
+            body: [{ id: 7855 }],
             headers: new HttpHeaders({
               link: '<http://localhost/api/foo?page=0&size=20>; rel="prev",<http://localhost/api/foo?page=2&size=20>; rel="next"',
             }),
@@ -84,15 +84,15 @@ describe('Resource Management Component', () => {
 
     // THEN
     expect(service.query).toHaveBeenCalled();
-    expect(comp.resources()[0]).toEqual(expect.objectContaining({ id: 12681 }));
+    expect(comp.practitioners()[0]).toEqual(expect.objectContaining({ id: 27164 }));
   });
 
   describe('trackId', () => {
-    it('Should forward to resourceService', () => {
-      const entity = { id: 12681 };
-      jest.spyOn(service, 'getResourceIdentifier');
+    it('Should forward to practitionerService', () => {
+      const entity = { id: 27164 };
+      jest.spyOn(service, 'getPractitionerIdentifier');
       const id = comp.trackId(entity);
-      expect(service.getResourceIdentifier).toHaveBeenCalledWith(entity);
+      expect(service.getPractitionerIdentifier).toHaveBeenCalledWith(entity);
       expect(id).toBe(entity.id);
     });
   });

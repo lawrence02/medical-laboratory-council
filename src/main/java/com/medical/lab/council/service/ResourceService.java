@@ -1,8 +1,9 @@
 package com.medical.lab.council.service;
 
 import com.medical.lab.council.domain.Resource;
-import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing {@link com.medical.lab.council.domain.Resource}.
@@ -35,9 +36,10 @@ public interface ResourceService {
     /**
      * Get all the resources.
      *
+     * @param pageable the pagination information.
      * @return the list of entities.
      */
-    List<Resource> findAll();
+    Page<Resource> findAll(Pageable pageable);
 
     /**
      * Get the "id" resource.

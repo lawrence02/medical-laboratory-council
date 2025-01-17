@@ -16,14 +16,8 @@
     }
   ],
   "name": "Resource",
-  "relationships": [
-    {
-      "otherEntityName": "survivor",
-      "relationshipName": "survivor",
-      "relationshipSide": "right",
-      "relationshipType": "many-to-one"
-    }
-  ],
+  "pagination": "pagination",
+  "relationships": [],
   "searchEngine": "no",
   "service": "serviceImpl"
 }
