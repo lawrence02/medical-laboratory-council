@@ -8,8 +8,9 @@
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "survivor": "Survivor",
-        "resource": "Resource"
+        "practitioner": "Practitioner",
+        "qualification": "Qualification",
+        "payment": "Payment"
       },
       "account": {
         "main": "Account",
