@@ -1,13 +1,26 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+
+import dayjs from 'dayjs/esm';
 
 import { isPresent } from 'app/core/util/operators';
+import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ISurvivor, NewSurvivor } from '../survivor.model';
 
 export type PartialUpdateSurvivor = Partial<ISurvivor> & Pick<ISurvivor, 'id'>;
+
+type RestOf<T extends ISurvivor | NewSurvivor> = Omit<T, 'dob'> & {
+  dob?: string | null;
+};
+
+export type RestSurvivor = RestOf<ISurvivor>;
+
+export type NewRestSurvivor = RestOf<NewSurvivor>;
+
+export type PartialUpdateRestSurvivor = RestOf<PartialUpdateSurvivor>;
 
 export type EntityResponseType = HttpResponse<ISurvivor>;
 export type EntityArrayResponseType = HttpResponse<ISurvivor[]>;
@@ -20,24 +33,37 @@ export class SurvivorService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/survivors');
 
   create(survivor: NewSurvivor): Observable<EntityResponseType> {
-    return this.http.post<ISurvivor>(this.resourceUrl, survivor, { observe: 'response' });
+    const copy = this.convertDateFromClient(survivor);
+    return this.http
+      .post<RestSurvivor>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   update(survivor: ISurvivor): Observable<EntityResponseType> {
-    return this.http.put<ISurvivor>(`${this.resourceUrl}/${this.getSurvivorIdentifier(survivor)}`, survivor, { observe: 'response' });
+    const copy = this.convertDateFromClient(survivor);
+    return this.http
+      .put<RestSurvivor>(`${this.resourceUrl}/${this.getSurvivorIdentifier(survivor)}`, copy, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   partialUpdate(survivor: PartialUpdateSurvivor): Observable<EntityResponseType> {
-    return this.http.patch<ISurvivor>(`${this.resourceUrl}/${this.getSurvivorIdentifier(survivor)}`, survivor, { observe: 'response' });
+    const copy = this.convertDateFromClient(survivor);
+    return this.http
+      .patch<RestSurvivor>(`${this.resourceUrl}/${this.getSurvivorIdentifier(survivor)}`, copy, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<ISurvivor>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http
+      .get<RestSurvivor>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<ISurvivor[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http
+      .get<RestSurvivor[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map(res => this.convertResponseArrayFromServer(res)));
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -70,5 +96,31 @@ export class SurvivorService {
       return [...survivorsToAdd, ...survivorCollection];
     }
     return survivorCollection;
+  }
+
+  protected convertDateFromClient<T extends ISurvivor | NewSurvivor | PartialUpdateSurvivor>(survivor: T): RestOf<T> {
+    return {
+      ...survivor,
+      dob: survivor.dob?.format(DATE_FORMAT) ?? null,
+    };
+  }
+
+  protected convertDateFromServer(restSurvivor: RestSurvivor): ISurvivor {
+    return {
+      ...restSurvivor,
+      dob: restSurvivor.dob ? dayjs(restSurvivor.dob) : undefined,
+    };
+  }
+
+  protected convertResponseFromServer(res: HttpResponse<RestSurvivor>): HttpResponse<ISurvivor> {
+    return res.clone({
+      body: res.body ? this.convertDateFromServer(res.body) : null,
+    });
+  }
+
+  protected convertResponseArrayFromServer(res: HttpResponse<RestSurvivor[]>): HttpResponse<ISurvivor[]> {
+    return res.clone({
+      body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
+    });
   }
 }

@@ -4,6 +4,8 @@ import com.medical.lab.council.domain.Survivor;
 import com.medical.lab.council.repository.SurvivorRepository;
 import com.medical.lab.council.service.SurvivorService;
 import com.medical.lab.council.web.rest.errors.BadRequestAlertException;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -53,7 +55,7 @@ public class SurvivorResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("")
-    public ResponseEntity<Survivor> createSurvivor(@RequestBody Survivor survivor) throws URISyntaxException {
+    public ResponseEntity<Survivor> createSurvivor(@Valid @RequestBody Survivor survivor) throws URISyntaxException {
         LOG.debug("REST request to save Survivor : {}", survivor);
         if (survivor.getId() != null) {
             throw new BadRequestAlertException("A new survivor cannot already have an ID", ENTITY_NAME, "idexists");
@@ -77,7 +79,7 @@ public class SurvivorResource {
     @PutMapping("/{id}")
     public ResponseEntity<Survivor> updateSurvivor(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Survivor survivor
+        @Valid @RequestBody Survivor survivor
     ) throws URISyntaxException {
         LOG.debug("REST request to update Survivor : {}, {}", id, survivor);
         if (survivor.getId() == null) {
@@ -111,7 +113,7 @@ public class SurvivorResource {
     @PatchMapping(value = "/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Survivor> partialUpdateSurvivor(
         @PathVariable(value = "id", required = false) final Long id,
-        @RequestBody Survivor survivor
+        @NotNull @RequestBody Survivor survivor
     ) throws URISyntaxException {
         LOG.debug("REST request to partial update Survivor partially : {}, {}", id, survivor);
         if (survivor.getId() == null) {
