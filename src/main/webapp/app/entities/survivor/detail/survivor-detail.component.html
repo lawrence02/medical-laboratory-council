@@ -17,21 +17,55 @@
           </dd>
           <dt>
             <span
-              [ngbTooltip]="'medicalLaboratoryCouncilApp.survivor.help.survivorId' | translate"
-              jhiTranslate="medicalLaboratoryCouncilApp.survivor.survivorId"
-              >Survivor Id</span
+              [ngbTooltip]="'medicalLaboratoryCouncilApp.survivor.help.practitionerType' | translate"
+              jhiTranslate="medicalLaboratoryCouncilApp.survivor.practitionerType"
+              >Practitioner Type</span
             >
           </dt>
           <dd>
-            <span>{{ survivorRef.survivorId }}</span>
+            <span [jhiTranslate]="'medicalLaboratoryCouncilApp.PractitionerType.' + (survivorRef.practitionerType ?? 'null')">{{
+              {
+                null: '',
+                ClinicalScientist: 'ClinicalScientist',
+                MedicalResearchScientist: 'MedicalResearchScientist',
+                MedicalLaboratoryScientist: 'MedicalLaboratoryScientist',
+                MedicalLaboratoryTechnician: 'MedicalLaboratoryTechnician',
+                StateCertifiedTechnician: 'StateCertifiedTechnician',
+                State: 'State',
+                Certified: 'Certified',
+                Blood: 'Blood',
+                Bank: 'Bank',
+                Technician: 'Technician',
+                Cytotechnician: 'Cytotechnician',
+                POCTester: 'POCTester',
+              }[survivorRef.practitionerType ?? 'null']
+            }}</span>
           </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.name">Name</span></dt>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.registrationNumber">Registration Number</span></dt>
           <dd>
-            <span>{{ survivorRef.name }}</span>
+            <span>{{ survivorRef.registrationNumber }}</span>
           </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.age">Age</span></dt>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.title">Title</span></dt>
           <dd>
-            <span>{{ survivorRef.age }}</span>
+            <span [jhiTranslate]="'medicalLaboratoryCouncilApp.Title.' + (survivorRef.title ?? 'null')">{{
+              { null: '', Mr: 'Mr', Mrs: 'Mrs', Miss: 'Miss', Ms: 'Ms', Dr: 'Dr' }[survivorRef.title ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.surname">Surname</span></dt>
+          <dd>
+            <span>{{ survivorRef.surname }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.forenames">Forenames</span></dt>
+          <dd>
+            <span>{{ survivorRef.forenames }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.previousSurname">Previous Surname</span></dt>
+          <dd>
+            <span>{{ survivorRef.previousSurname }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.dob">Dob</span></dt>
+          <dd>
+            <span>{{ survivorRef.dob | formatMediumDate }}</span>
           </dd>
           <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.gender">Gender</span></dt>
           <dd>
@@ -39,19 +73,91 @@
               { null: '', Male: 'Male', Female: 'Female', Unknown: 'Unknown' }[survivorRef.gender ?? 'null']
             }}</span>
           </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.latitude">Latitude</span></dt>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.placeOfBirthTown">Place Of Birth Town</span></dt>
           <dd>
-            <span>{{ survivorRef.latitude }}</span>
+            <span>{{ survivorRef.placeOfBirthTown }}</span>
           </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.longitude">Longitude</span></dt>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.placeOfBirthCountry">Place Of Birth Country</span></dt>
           <dd>
-            <span>{{ survivorRef.longitude }}</span>
+            <span>{{ survivorRef.placeOfBirthCountry }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.nationality">Nationality</span></dt>
+          <dd>
+            <span>{{ survivorRef.nationality }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.nationalId">National Id</span></dt>
+          <dd>
+            <span>{{ survivorRef.nationalId }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.maritalStatus">Marital Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryCouncilApp.MaritalStatus.' + (survivorRef.maritalStatus ?? 'null')">{{
+              { null: '', Married: 'Married', Single: 'Single', Other: 'Other' }[survivorRef.maritalStatus ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.residentialAddress1">Residential Address 1</span></dt>
+          <dd>
+            <span>{{ survivorRef.residentialAddress1 }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.residentialAddress2">Residential Address 2</span></dt>
+          <dd>
+            <span>{{ survivorRef.residentialAddress2 }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.residentialAddress3">Residential Address 3</span></dt>
+          <dd>
+            <span>{{ survivorRef.residentialAddress3 }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.homePhone">Home Phone</span></dt>
+          <dd>
+            <span>{{ survivorRef.homePhone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.workPhone">Work Phone</span></dt>
+          <dd>
+            <span>{{ survivorRef.workPhone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.cellPhone">Cell Phone</span></dt>
+          <dd>
+            <span>{{ survivorRef.cellPhone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.emailAddress">Email Address</span></dt>
+          <dd>
+            <span>{{ survivorRef.emailAddress }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.nameOfPlaceOfEmployment">Name Of Place Of Employment</span></dt>
+          <dd>
+            <span>{{ survivorRef.nameOfPlaceOfEmployment }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.employerAddress">Employer Address</span></dt>
+          <dd>
+            <span>{{ survivorRef.employerAddress }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.employerEmail">Employer Email</span></dt>
+          <dd>
+            <span>{{ survivorRef.employerEmail }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.dateOfEmployment">Date Of Employment</span></dt>
+          <dd>
+            <span>{{ survivorRef.dateOfEmployment }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.reasonForNonEmployment">Reason For Non Employment</span></dt>
+          <dd>
+            <span>{{ survivorRef.reasonForNonEmployment }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.dateOfApplication">Date Of Application</span></dt>
+          <dd>
+            <span>{{ survivorRef.dateOfApplication }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.applicationFee">Application Fee</span></dt>
+          <dd>
+            <span>{{ survivorRef.applicationFee }}</span>
           </dd>
           <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.status">Status</span></dt>
           <dd>
-            <span [jhiTranslate]="'medicalLaboratoryCouncilApp.InfectionStatus.' + (survivorRef.status ?? 'null')">{{
-              { null: '', Normal: 'Normal', Infected: 'Infected', Contaminated: 'Contaminated' }[survivorRef.status ?? 'null']
-            }}</span>
+            <span>{{ survivorRef.status }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.reasonNotApproved">Reason Not Approved</span></dt>
+          <dd>
+            <span>{{ survivorRef.reasonNotApproved }}</span>
           </dd>
         </dl>
 

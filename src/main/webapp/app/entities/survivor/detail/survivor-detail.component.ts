@@ -2,12 +2,13 @@ import { Component, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import SharedModule from 'app/shared/shared.module';
+import { FormatMediumDatePipe } from 'app/shared/date';
 import { ISurvivor } from '../survivor.model';
 
 @Component({
   selector: 'jhi-survivor-detail',
   templateUrl: './survivor-detail.component.html',
-  imports: [SharedModule, RouterModule],
+  imports: [SharedModule, RouterModule, FormatMediumDatePipe],
 })
 export class SurvivorDetailComponent {
   survivor = input<ISurvivor | null>(null);

@@ -14,25 +14,91 @@
             <column name="id" type="bigint" autoIncrement="true" startWith="1500">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="survivor_id" type="varchar(255)" remarks="The survivorId attribute.">
+            <column name="practitioner_type" type="varchar(255)" remarks="The survivorId attribute.">
                 <constraints nullable="true" />
             </column>
-            <column name="name" type="varchar(255)">
+            <column name="registration_number" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="title" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="age" type="integer">
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="forenames" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="previous_surname" type="varchar(255)">
                 <constraints nullable="true" />
+            </column>
+            <column name="dob" type="date">
+                <constraints nullable="false" />
             </column>
             <column name="gender" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="place_of_birth_town" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="latitude" type="varchar(255)">
+            <column name="place_of_birth_country" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="longitude" type="varchar(255)">
+            <column name="nationality" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="national_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="marital_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="residential_address_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="residential_address_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="residential_address_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="home_phone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="work_phone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cell_phone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="email_address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="name_of_place_of_employment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="employer_address" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="employer_email" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_of_employment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="reason_for_non_employment" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date_of_application" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="application_fee" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="reason_not_approved" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
@@ -56,13 +122,35 @@
                   tableName="survivor"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="survivor_id" type="string"/>
-            <column name="name" type="string"/>
-            <column name="age" type="numeric"/>
+            <column name="practitioner_type" type="string"/>
+            <column name="registration_number" type="string"/>
+            <column name="title" type="string"/>
+            <column name="surname" type="string"/>
+            <column name="forenames" type="string"/>
+            <column name="previous_surname" type="string"/>
+            <column name="dob" type="date"/>
             <column name="gender" type="string"/>
-            <column name="latitude" type="string"/>
-            <column name="longitude" type="string"/>
+            <column name="place_of_birth_town" type="string"/>
+            <column name="place_of_birth_country" type="string"/>
+            <column name="nationality" type="string"/>
+            <column name="national_id" type="string"/>
+            <column name="marital_status" type="string"/>
+            <column name="residential_address_1" type="string"/>
+            <column name="residential_address_2" type="string"/>
+            <column name="residential_address_3" type="string"/>
+            <column name="home_phone" type="string"/>
+            <column name="work_phone" type="string"/>
+            <column name="cell_phone" type="string"/>
+            <column name="email_address" type="string"/>
+            <column name="name_of_place_of_employment" type="string"/>
+            <column name="employer_address" type="string"/>
+            <column name="employer_email" type="string"/>
+            <column name="date_of_employment" type="string"/>
+            <column name="reason_for_non_employment" type="string"/>
+            <column name="date_of_application" type="string"/>
+            <column name="application_fee" type="string"/>
             <column name="status" type="string"/>
+            <column name="reason_not_approved" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
