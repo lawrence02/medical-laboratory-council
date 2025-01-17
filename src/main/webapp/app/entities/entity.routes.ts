@@ -16,6 +16,11 @@ const routes: Routes = [
     data: { pageTitle: 'medicalLaboratoryCouncilApp.resource.home.title' },
     loadChildren: () => import('./resource/resource.routes'),
   },
+  {
+    path: 'practitioner',
+    data: { pageTitle: 'medicalLaboratoryCouncilApp.practitioner.home.title' },
+    loadChildren: () => import('./practitioner/practitioner.routes'),
+  },
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 
