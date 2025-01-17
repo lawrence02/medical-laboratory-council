@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import SharedModule from 'app/shared/shared.module';
 import { SortByDirective, SortDirective, SortService, type SortState, sortStateSignal } from 'app/shared/sort';
+import { FormatMediumDatePipe } from 'app/shared/date';
 import { ItemCountComponent } from 'app/shared/pagination';
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +19,7 @@ import { SurvivorDeleteDialogComponent } from '../delete/survivor-delete-dialog.
 @Component({
   selector: 'jhi-survivor',
   templateUrl: './survivor.component.html',
-  imports: [RouterModule, FormsModule, SharedModule, SortDirective, SortByDirective, ItemCountComponent],
+  imports: [RouterModule, FormsModule, SharedModule, SortDirective, SortByDirective, FormatMediumDatePipe, ItemCountComponent],
 })
 export class SurvivorComponent implements OnInit {
   subscription: Subscription | null = null;

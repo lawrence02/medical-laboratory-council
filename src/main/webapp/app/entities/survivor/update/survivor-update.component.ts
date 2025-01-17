@@ -8,7 +8,6 @@ import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Gender } from 'app/entities/enumerations/gender.model';
-import { InfectionStatus } from 'app/entities/enumerations/infection-status.model';
 import { ISurvivor } from '../survivor.model';
 import { SurvivorService } from '../service/survivor.service';
 import { SurvivorFormGroup, SurvivorFormService } from './survivor-form.service';
@@ -22,7 +21,6 @@ export class SurvivorUpdateComponent implements OnInit {
   isSaving = false;
   survivor: ISurvivor | null = null;
   genderValues = Object.keys(Gender);
-  infectionStatusValues = Object.keys(InfectionStatus);
 
   protected survivorService = inject(SurvivorService);
   protected survivorFormService = inject(SurvivorFormService);
