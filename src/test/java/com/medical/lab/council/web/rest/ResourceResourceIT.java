@@ -262,7 +262,7 @@ class ResourceResourceIT {
         Resource partialUpdatedResource = new Resource();
         partialUpdatedResource.setId(resource.getId());
 
-        partialUpdatedResource.resourceType(UPDATED_RESOURCE_TYPE).quantity(UPDATED_QUANTITY);
+        partialUpdatedResource.resourceType(UPDATED_RESOURCE_TYPE);
 
         restResourceMockMvc
             .perform(
