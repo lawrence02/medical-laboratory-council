@@ -2,13 +2,39 @@ entity Survivor {
 	/**
 	* The survivorId attribute.
 	*/
-    survivorId String,
-	name String,
-	age Integer,
-	gender Gender,
-	latitude String,
-	longitude String,
-    status InfectionStatus
+    //practitionerType PractitionerType,
+    registrationNumber String required, // Corrected spelling
+    surname String required,
+    forenames String required,
+    previousSurname String,
+    dob LocalDate required,
+    gender Gender required,
+    placeOfBirthTown String,
+    placeOfBirthCountry String,
+    nationality String,
+    nationalId String,
+    //maritalStatus MaritalStatus,
+    residentialAddress1 String,
+    residentialAddress2 String,
+    residentialAddress3 String,
+    homePhone String,
+    workPhone String,
+    cellPhone String,
+    emailAddress String,
+    nameOfPlaceOfEmployment String,
+    employerAddress String,
+    employerEmail String,
+    dateOfEmployment String,
+    //areaOfEmployment AreaOfEmployment,
+    //employmentStatus EmploymentStatus,
+    //typeOfInstitution TypeOfInstitution,
+    //provinceEmployed Province,
+    reasonForNonEmployment String, // Corrected spelling
+    dateOfApplication String,
+    signature File,
+    applicationFee String,
+    status String,
+    reasonNotApproved String
 }
 
 entity Resource {
