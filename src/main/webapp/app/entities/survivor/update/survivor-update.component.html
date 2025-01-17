@@ -22,31 +22,125 @@
         <div class="mb-3">
           <label
             class="form-label"
-            for="field_survivorId"
-            [ngbTooltip]="'medicalLaboratoryCouncilApp.survivor.help.survivorId' | translate"
-            jhiTranslate="medicalLaboratoryCouncilApp.survivor.survivorId"
-            >Survivor Id</label
+            for="field_practitionerType"
+            [ngbTooltip]="'medicalLaboratoryCouncilApp.survivor.help.practitionerType' | translate"
+            jhiTranslate="medicalLaboratoryCouncilApp.survivor.practitionerType"
+            >Practitioner Type</label
+          >
+          <select
+            class="form-control"
+            name="practitionerType"
+            formControlName="practitionerType"
+            id="field_practitionerType"
+            data-cy="practitionerType"
+          >
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.PractitionerType.null' | translate }}</option>
+            @for (practitionerType of practitionerTypeValues; track $index) {
+              <option [value]="practitionerType">
+                {{ 'medicalLaboratoryCouncilApp.PractitionerType.' + practitionerType | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        @let registrationNumberRef = editForm.get('registrationNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_registrationNumber" jhiTranslate="medicalLaboratoryCouncilApp.survivor.registrationNumber"
+            >Registration Number</label
           >
           <input
             type="text"
             class="form-control"
-            name="survivorId"
-            id="field_survivorId"
-            data-cy="survivorId"
-            formControlName="survivorId"
+            name="registrationNumber"
+            id="field_registrationNumber"
+            data-cy="registrationNumber"
+            formControlName="registrationNumber"
+          />
+          @if (registrationNumberRef.invalid && (registrationNumberRef.dirty || registrationNumberRef.touched)) {
+            <div>
+              @if (editForm.get('registrationNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_title" jhiTranslate="medicalLaboratoryCouncilApp.survivor.title">Title</label>
+          <select class="form-control" name="title" formControlName="title" id="field_title" data-cy="title">
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.Title.null' | translate }}</option>
+            @for (title of titleValues; track $index) {
+              <option [value]="title">{{ 'medicalLaboratoryCouncilApp.Title.' + title | translate }}</option>
+            }
+          </select>
+        </div>
+
+        @let surnameRef = editForm.get('surname')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_surname" jhiTranslate="medicalLaboratoryCouncilApp.survivor.surname">Surname</label>
+          <input type="text" class="form-control" name="surname" id="field_surname" data-cy="surname" formControlName="surname" />
+          @if (surnameRef.invalid && (surnameRef.dirty || surnameRef.touched)) {
+            <div>
+              @if (editForm.get('surname')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let forenamesRef = editForm.get('forenames')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_forenames" jhiTranslate="medicalLaboratoryCouncilApp.survivor.forenames">Forenames</label>
+          <input type="text" class="form-control" name="forenames" id="field_forenames" data-cy="forenames" formControlName="forenames" />
+          @if (forenamesRef.invalid && (forenamesRef.dirty || forenamesRef.touched)) {
+            <div>
+              @if (editForm.get('forenames')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_previousSurname" jhiTranslate="medicalLaboratoryCouncilApp.survivor.previousSurname"
+            >Previous Surname</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="previousSurname"
+            id="field_previousSurname"
+            data-cy="previousSurname"
+            formControlName="previousSurname"
           />
         </div>
 
+        @let dobRef = editForm.get('dob')!;
         <div class="mb-3">
-          <label class="form-label" for="field_name" jhiTranslate="medicalLaboratoryCouncilApp.survivor.name">Name</label>
-          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <label class="form-label" for="field_dob" jhiTranslate="medicalLaboratoryCouncilApp.survivor.dob">Dob</label>
+          <div class="input-group">
+            <input
+              id="field_dob"
+              data-cy="dob"
+              type="text"
+              class="form-control"
+              name="dob"
+              ngbDatepicker
+              #dobDp="ngbDatepicker"
+              formControlName="dob"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dobDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (dobRef.invalid && (dobRef.dirty || dobRef.touched)) {
+            <div>
+              @if (editForm.get('dob')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_age" jhiTranslate="medicalLaboratoryCouncilApp.survivor.age">Age</label>
-          <input type="number" class="form-control" name="age" id="field_age" data-cy="age" formControlName="age" />
-        </div>
-
+        @let genderRef = editForm.get('gender')!;
         <div class="mb-3">
           <label class="form-label" for="field_gender" jhiTranslate="medicalLaboratoryCouncilApp.survivor.gender">Gender</label>
           <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
@@ -55,26 +149,359 @@
               <option [value]="gender">{{ 'medicalLaboratoryCouncilApp.Gender.' + gender | translate }}</option>
             }
           </select>
+          @if (genderRef.invalid && (genderRef.dirty || genderRef.touched)) {
+            <div>
+              @if (editForm.get('gender')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_latitude" jhiTranslate="medicalLaboratoryCouncilApp.survivor.latitude">Latitude</label>
-          <input type="text" class="form-control" name="latitude" id="field_latitude" data-cy="latitude" formControlName="latitude" />
+          <label class="form-label" for="field_placeOfBirthTown" jhiTranslate="medicalLaboratoryCouncilApp.survivor.placeOfBirthTown"
+            >Place Of Birth Town</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="placeOfBirthTown"
+            id="field_placeOfBirthTown"
+            data-cy="placeOfBirthTown"
+            formControlName="placeOfBirthTown"
+          />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_longitude" jhiTranslate="medicalLaboratoryCouncilApp.survivor.longitude">Longitude</label>
-          <input type="text" class="form-control" name="longitude" id="field_longitude" data-cy="longitude" formControlName="longitude" />
+          <label class="form-label" for="field_placeOfBirthCountry" jhiTranslate="medicalLaboratoryCouncilApp.survivor.placeOfBirthCountry"
+            >Place Of Birth Country</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="placeOfBirthCountry"
+            id="field_placeOfBirthCountry"
+            data-cy="placeOfBirthCountry"
+            formControlName="placeOfBirthCountry"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nationality" jhiTranslate="medicalLaboratoryCouncilApp.survivor.nationality"
+            >Nationality</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nationality"
+            id="field_nationality"
+            data-cy="nationality"
+            formControlName="nationality"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nationalId" jhiTranslate="medicalLaboratoryCouncilApp.survivor.nationalId"
+            >National Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nationalId"
+            id="field_nationalId"
+            data-cy="nationalId"
+            formControlName="nationalId"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_maritalStatus" jhiTranslate="medicalLaboratoryCouncilApp.survivor.maritalStatus"
+            >Marital Status</label
+          >
+          <select
+            class="form-control"
+            name="maritalStatus"
+            formControlName="maritalStatus"
+            id="field_maritalStatus"
+            data-cy="maritalStatus"
+          >
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.MaritalStatus.null' | translate }}</option>
+            @for (maritalStatus of maritalStatusValues; track $index) {
+              <option [value]="maritalStatus">{{ 'medicalLaboratoryCouncilApp.MaritalStatus.' + maritalStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_residentialAddress1" jhiTranslate="medicalLaboratoryCouncilApp.survivor.residentialAddress1"
+            >Residential Address 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="residentialAddress1"
+            id="field_residentialAddress1"
+            data-cy="residentialAddress1"
+            formControlName="residentialAddress1"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_residentialAddress2" jhiTranslate="medicalLaboratoryCouncilApp.survivor.residentialAddress2"
+            >Residential Address 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="residentialAddress2"
+            id="field_residentialAddress2"
+            data-cy="residentialAddress2"
+            formControlName="residentialAddress2"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_residentialAddress3" jhiTranslate="medicalLaboratoryCouncilApp.survivor.residentialAddress3"
+            >Residential Address 3</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="residentialAddress3"
+            id="field_residentialAddress3"
+            data-cy="residentialAddress3"
+            formControlName="residentialAddress3"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_homePhone" jhiTranslate="medicalLaboratoryCouncilApp.survivor.homePhone">Home Phone</label>
+          <input type="text" class="form-control" name="homePhone" id="field_homePhone" data-cy="homePhone" formControlName="homePhone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_workPhone" jhiTranslate="medicalLaboratoryCouncilApp.survivor.workPhone">Work Phone</label>
+          <input type="text" class="form-control" name="workPhone" id="field_workPhone" data-cy="workPhone" formControlName="workPhone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cellPhone" jhiTranslate="medicalLaboratoryCouncilApp.survivor.cellPhone">Cell Phone</label>
+          <input type="text" class="form-control" name="cellPhone" id="field_cellPhone" data-cy="cellPhone" formControlName="cellPhone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_emailAddress" jhiTranslate="medicalLaboratoryCouncilApp.survivor.emailAddress"
+            >Email Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="emailAddress"
+            id="field_emailAddress"
+            data-cy="emailAddress"
+            formControlName="emailAddress"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nameOfPlaceOfEmployment"
+            jhiTranslate="medicalLaboratoryCouncilApp.survivor.nameOfPlaceOfEmployment"
+            >Name Of Place Of Employment</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nameOfPlaceOfEmployment"
+            id="field_nameOfPlaceOfEmployment"
+            data-cy="nameOfPlaceOfEmployment"
+            formControlName="nameOfPlaceOfEmployment"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_employerAddress" jhiTranslate="medicalLaboratoryCouncilApp.survivor.employerAddress"
+            >Employer Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="employerAddress"
+            id="field_employerAddress"
+            data-cy="employerAddress"
+            formControlName="employerAddress"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_employerEmail" jhiTranslate="medicalLaboratoryCouncilApp.survivor.employerEmail"
+            >Employer Email</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="employerEmail"
+            id="field_employerEmail"
+            data-cy="employerEmail"
+            formControlName="employerEmail"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateOfEmployment" jhiTranslate="medicalLaboratoryCouncilApp.survivor.dateOfEmployment"
+            >Date Of Employment</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dateOfEmployment"
+            id="field_dateOfEmployment"
+            data-cy="dateOfEmployment"
+            formControlName="dateOfEmployment"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_areaOfEmployment" jhiTranslate="medicalLaboratoryCouncilApp.survivor.areaOfEmployment"
+            >Area Of Employment</label
+          >
+          <select
+            class="form-control"
+            name="areaOfEmployment"
+            formControlName="areaOfEmployment"
+            id="field_areaOfEmployment"
+            data-cy="areaOfEmployment"
+          >
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.AreaOfEmployment.null' | translate }}</option>
+            @for (areaOfEmployment of areaOfEmploymentValues; track $index) {
+              <option [value]="areaOfEmployment">
+                {{ 'medicalLaboratoryCouncilApp.AreaOfEmployment.' + areaOfEmployment | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_employmentStatus" jhiTranslate="medicalLaboratoryCouncilApp.survivor.employmentStatus"
+            >Employment Status</label
+          >
+          <select
+            class="form-control"
+            name="employmentStatus"
+            formControlName="employmentStatus"
+            id="field_employmentStatus"
+            data-cy="employmentStatus"
+          >
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.EmploymentStatus.null' | translate }}</option>
+            @for (employmentStatus of employmentStatusValues; track $index) {
+              <option [value]="employmentStatus">
+                {{ 'medicalLaboratoryCouncilApp.EmploymentStatus.' + employmentStatus | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typeOfInstitution" jhiTranslate="medicalLaboratoryCouncilApp.survivor.typeOfInstitution"
+            >Type Of Institution</label
+          >
+          <select
+            class="form-control"
+            name="typeOfInstitution"
+            formControlName="typeOfInstitution"
+            id="field_typeOfInstitution"
+            data-cy="typeOfInstitution"
+          >
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.TypeOfInstitution.null' | translate }}</option>
+            @for (typeOfInstitution of typeOfInstitutionValues; track $index) {
+              <option [value]="typeOfInstitution">
+                {{ 'medicalLaboratoryCouncilApp.TypeOfInstitution.' + typeOfInstitution | translate }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_provinceEmployed" jhiTranslate="medicalLaboratoryCouncilApp.survivor.provinceEmployed"
+            >Province Employed</label
+          >
+          <select
+            class="form-control"
+            name="provinceEmployed"
+            formControlName="provinceEmployed"
+            id="field_provinceEmployed"
+            data-cy="provinceEmployed"
+          >
+            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.Province.null' | translate }}</option>
+            @for (province of provinceValues; track $index) {
+              <option [value]="province">{{ 'medicalLaboratoryCouncilApp.Province.' + province | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_reasonForNonEmployment"
+            jhiTranslate="medicalLaboratoryCouncilApp.survivor.reasonForNonEmployment"
+            >Reason For Non Employment</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reasonForNonEmployment"
+            id="field_reasonForNonEmployment"
+            data-cy="reasonForNonEmployment"
+            formControlName="reasonForNonEmployment"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateOfApplication" jhiTranslate="medicalLaboratoryCouncilApp.survivor.dateOfApplication"
+            >Date Of Application</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dateOfApplication"
+            id="field_dateOfApplication"
+            data-cy="dateOfApplication"
+            formControlName="dateOfApplication"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_applicationFee" jhiTranslate="medicalLaboratoryCouncilApp.survivor.applicationFee"
+            >Application Fee</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="applicationFee"
+            id="field_applicationFee"
+            data-cy="applicationFee"
+            formControlName="applicationFee"
+          />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_status" jhiTranslate="medicalLaboratoryCouncilApp.survivor.status">Status</label>
-          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
-            <option [ngValue]="null">{{ 'medicalLaboratoryCouncilApp.InfectionStatus.null' | translate }}</option>
-            @for (infectionStatus of infectionStatusValues; track $index) {
-              <option [value]="infectionStatus">{{ 'medicalLaboratoryCouncilApp.InfectionStatus.' + infectionStatus | translate }}</option>
-            }
-          </select>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reasonNotApproved" jhiTranslate="medicalLaboratoryCouncilApp.survivor.reasonNotApproved"
+            >Reason Not Approved</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="reasonNotApproved"
+            id="field_reasonNotApproved"
+            data-cy="reasonNotApproved"
+            formControlName="reasonNotApproved"
+          />
         </div>
       </div>
 

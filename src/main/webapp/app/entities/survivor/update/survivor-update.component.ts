@@ -7,10 +7,16 @@ import { finalize } from 'rxjs/operators';
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { PractitionerType } from 'app/entities/enumerations/practitioner-type.model';
+import { Title } from 'app/entities/enumerations/title.model';
 import { Gender } from 'app/entities/enumerations/gender.model';
-import { InfectionStatus } from 'app/entities/enumerations/infection-status.model';
-import { ISurvivor } from '../survivor.model';
+import { MaritalStatus } from 'app/entities/enumerations/marital-status.model';
+import { AreaOfEmployment } from 'app/entities/enumerations/area-of-employment.model';
+import { EmploymentStatus } from 'app/entities/enumerations/employment-status.model';
+import { TypeOfInstitution } from 'app/entities/enumerations/type-of-institution.model';
+import { Province } from 'app/entities/enumerations/province.model';
 import { SurvivorService } from '../service/survivor.service';
+import { ISurvivor } from '../survivor.model';
 import { SurvivorFormGroup, SurvivorFormService } from './survivor-form.service';
 
 @Component({
@@ -21,8 +27,14 @@ import { SurvivorFormGroup, SurvivorFormService } from './survivor-form.service'
 export class SurvivorUpdateComponent implements OnInit {
   isSaving = false;
   survivor: ISurvivor | null = null;
+  practitionerTypeValues = Object.keys(PractitionerType);
+  titleValues = Object.keys(Title);
   genderValues = Object.keys(Gender);
-  infectionStatusValues = Object.keys(InfectionStatus);
+  maritalStatusValues = Object.keys(MaritalStatus);
+  areaOfEmploymentValues = Object.keys(AreaOfEmployment);
+  employmentStatusValues = Object.keys(EmploymentStatus);
+  typeOfInstitutionValues = Object.keys(TypeOfInstitution);
+  provinceValues = Object.keys(Province);
 
   protected survivorService = inject(SurvivorService);
   protected survivorFormService = inject(SurvivorFormService);
