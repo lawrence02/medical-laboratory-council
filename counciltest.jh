@@ -2,13 +2,8 @@ entity Survivor {
 	/**
 	* The survivorId attribute.
 	*/
-    survivorId String,
-	name String,
-	age Integer,
-	gender Gender,
-	latitude String,
-	longitude String,
-    status InfectionStatus
+    //practitionerType PractitionerType,
+    name String
 }
 
 entity Resource {
