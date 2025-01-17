@@ -11,9 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medical.lab.council.IntegrationTest;
 import com.medical.lab.council.domain.Survivor;
 import com.medical.lab.council.domain.enumeration.Gender;
-import com.medical.lab.council.domain.enumeration.InfectionStatus;
 import com.medical.lab.council.repository.SurvivorRepository;
 import jakarta.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.AfterEach;
@@ -34,26 +35,23 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class SurvivorResourceIT {
 
-    private static final String DEFAULT_SURVIVOR_ID = "AAAAAAAAAA";
-    private static final String UPDATED_SURVIVOR_ID = "BBBBBBBBBB";
+    private static final String DEFAULT_REGISTRATION_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_REGISTRATION_NUMBER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_SURNAME = "AAAAAAAAAA";
+    private static final String UPDATED_SURNAME = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_AGE = 1;
-    private static final Integer UPDATED_AGE = 2;
+    private static final String DEFAULT_FORENAMES = "AAAAAAAAAA";
+    private static final String UPDATED_FORENAMES = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PREVIOUS_SURNAME = "AAAAAAAAAA";
+    private static final String UPDATED_PREVIOUS_SURNAME = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_DOB = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DOB = LocalDate.now(ZoneId.systemDefault());
 
     private static final Gender DEFAULT_GENDER = Gender.Male;
     private static final Gender UPDATED_GENDER = Gender.Female;
-
-    private static final String DEFAULT_LATITUDE = "AAAAAAAAAA";
-    private static final String UPDATED_LATITUDE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_LONGITUDE = "AAAAAAAAAA";
-    private static final String UPDATED_LONGITUDE = "BBBBBBBBBB";
-
-    private static final InfectionStatus DEFAULT_STATUS = InfectionStatus.Normal;
-    private static final InfectionStatus UPDATED_STATUS = InfectionStatus.Infected;
 
     private static final String ENTITY_API_URL = "/api/survivors";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -85,13 +83,12 @@ class SurvivorResourceIT {
      */
     public static Survivor createEntity() {
         return new Survivor()
-            .survivorId(DEFAULT_SURVIVOR_ID)
-            .name(DEFAULT_NAME)
-            .age(DEFAULT_AGE)
-            .gender(DEFAULT_GENDER)
-            .latitude(DEFAULT_LATITUDE)
-            .longitude(DEFAULT_LONGITUDE)
-            .status(DEFAULT_STATUS);
+            .registrationNumber(DEFAULT_REGISTRATION_NUMBER)
+            .surname(DEFAULT_SURNAME)
+            .forenames(DEFAULT_FORENAMES)
+            .previousSurname(DEFAULT_PREVIOUS_SURNAME)
+            .dob(DEFAULT_DOB)
+            .gender(DEFAULT_GENDER);
     }
 
     /**
@@ -102,13 +99,12 @@ class SurvivorResourceIT {
      */
     public static Survivor createUpdatedEntity() {
         return new Survivor()
-            .survivorId(UPDATED_SURVIVOR_ID)
-            .name(UPDATED_NAME)
-            .age(UPDATED_AGE)
-            .gender(UPDATED_GENDER)
-            .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE)
-            .status(UPDATED_STATUS);
+            .registrationNumber(UPDATED_REGISTRATION_NUMBER)
+            .surname(UPDATED_SURNAME)
+            .forenames(UPDATED_FORENAMES)
+            .previousSurname(UPDATED_PREVIOUS_SURNAME)
+            .dob(UPDATED_DOB)
+            .gender(UPDATED_GENDER);
     }
 
     @BeforeEach
@@ -165,6 +161,86 @@ class SurvivorResourceIT {
 
     @Test
     @Transactional
+    void checkRegistrationNumberIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        survivor.setRegistrationNumber(null);
+
+        // Create the Survivor, which fails.
+
+        restSurvivorMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(survivor)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkSurnameIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        survivor.setSurname(null);
+
+        // Create the Survivor, which fails.
+
+        restSurvivorMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(survivor)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkForenamesIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        survivor.setForenames(null);
+
+        // Create the Survivor, which fails.
+
+        restSurvivorMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(survivor)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkDobIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        survivor.setDob(null);
+
+        // Create the Survivor, which fails.
+
+        restSurvivorMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(survivor)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkGenderIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        survivor.setGender(null);
+
+        // Create the Survivor, which fails.
+
+        restSurvivorMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(survivor)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllSurvivors() throws Exception {
         // Initialize the database
         insertedSurvivor = survivorRepository.saveAndFlush(survivor);
@@ -175,13 +251,12 @@ class SurvivorResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(survivor.getId().intValue())))
-            .andExpect(jsonPath("$.[*].survivorId").value(hasItem(DEFAULT_SURVIVOR_ID)))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].age").value(hasItem(DEFAULT_AGE)))
-            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())))
-            .andExpect(jsonPath("$.[*].latitude").value(hasItem(DEFAULT_LATITUDE)))
-            .andExpect(jsonPath("$.[*].longitude").value(hasItem(DEFAULT_LONGITUDE)))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].registrationNumber").value(hasItem(DEFAULT_REGISTRATION_NUMBER)))
+            .andExpect(jsonPath("$.[*].surname").value(hasItem(DEFAULT_SURNAME)))
+            .andExpect(jsonPath("$.[*].forenames").value(hasItem(DEFAULT_FORENAMES)))
+            .andExpect(jsonPath("$.[*].previousSurname").value(hasItem(DEFAULT_PREVIOUS_SURNAME)))
+            .andExpect(jsonPath("$.[*].dob").value(hasItem(DEFAULT_DOB.toString())))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())));
     }
 
     @Test
@@ -196,13 +271,12 @@ class SurvivorResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(survivor.getId().intValue()))
-            .andExpect(jsonPath("$.survivorId").value(DEFAULT_SURVIVOR_ID))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.age").value(DEFAULT_AGE))
-            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()))
-            .andExpect(jsonPath("$.latitude").value(DEFAULT_LATITUDE))
-            .andExpect(jsonPath("$.longitude").value(DEFAULT_LONGITUDE))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.registrationNumber").value(DEFAULT_REGISTRATION_NUMBER))
+            .andExpect(jsonPath("$.surname").value(DEFAULT_SURNAME))
+            .andExpect(jsonPath("$.forenames").value(DEFAULT_FORENAMES))
+            .andExpect(jsonPath("$.previousSurname").value(DEFAULT_PREVIOUS_SURNAME))
+            .andExpect(jsonPath("$.dob").value(DEFAULT_DOB.toString()))
+            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()));
     }
 
     @Test
@@ -225,13 +299,12 @@ class SurvivorResourceIT {
         // Disconnect from session so that the updates on updatedSurvivor are not directly saved in db
         em.detach(updatedSurvivor);
         updatedSurvivor
-            .survivorId(UPDATED_SURVIVOR_ID)
-            .name(UPDATED_NAME)
-            .age(UPDATED_AGE)
-            .gender(UPDATED_GENDER)
-            .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE)
-            .status(UPDATED_STATUS);
+            .registrationNumber(UPDATED_REGISTRATION_NUMBER)
+            .surname(UPDATED_SURNAME)
+            .forenames(UPDATED_FORENAMES)
+            .previousSurname(UPDATED_PREVIOUS_SURNAME)
+            .dob(UPDATED_DOB)
+            .gender(UPDATED_GENDER);
 
         restSurvivorMockMvc
             .perform(
@@ -309,7 +382,7 @@ class SurvivorResourceIT {
         Survivor partialUpdatedSurvivor = new Survivor();
         partialUpdatedSurvivor.setId(survivor.getId());
 
-        partialUpdatedSurvivor.name(UPDATED_NAME).gender(UPDATED_GENDER).latitude(UPDATED_LATITUDE).status(UPDATED_STATUS);
+        partialUpdatedSurvivor.surname(UPDATED_SURNAME).previousSurname(UPDATED_PREVIOUS_SURNAME).dob(UPDATED_DOB);
 
         restSurvivorMockMvc
             .perform(
@@ -338,13 +411,12 @@ class SurvivorResourceIT {
         partialUpdatedSurvivor.setId(survivor.getId());
 
         partialUpdatedSurvivor
-            .survivorId(UPDATED_SURVIVOR_ID)
-            .name(UPDATED_NAME)
-            .age(UPDATED_AGE)
-            .gender(UPDATED_GENDER)
-            .latitude(UPDATED_LATITUDE)
-            .longitude(UPDATED_LONGITUDE)
-            .status(UPDATED_STATUS);
+            .registrationNumber(UPDATED_REGISTRATION_NUMBER)
+            .surname(UPDATED_SURNAME)
+            .forenames(UPDATED_FORENAMES)
+            .previousSurname(UPDATED_PREVIOUS_SURNAME)
+            .dob(UPDATED_DOB)
+            .gender(UPDATED_GENDER);
 
         restSurvivorMockMvc
             .perform(

@@ -17,40 +17,34 @@
           </dd>
           <dt>
             <span
-              [ngbTooltip]="'medicalLaboratoryCouncilApp.survivor.help.survivorId' | translate"
-              jhiTranslate="medicalLaboratoryCouncilApp.survivor.survivorId"
-              >Survivor Id</span
+              [ngbTooltip]="'medicalLaboratoryCouncilApp.survivor.help.registrationNumber' | translate"
+              jhiTranslate="medicalLaboratoryCouncilApp.survivor.registrationNumber"
+              >Registration Number</span
             >
           </dt>
           <dd>
-            <span>{{ survivorRef.survivorId }}</span>
+            <span>{{ survivorRef.registrationNumber }}</span>
           </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.name">Name</span></dt>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.surname">Surname</span></dt>
           <dd>
-            <span>{{ survivorRef.name }}</span>
+            <span>{{ survivorRef.surname }}</span>
           </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.age">Age</span></dt>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.forenames">Forenames</span></dt>
           <dd>
-            <span>{{ survivorRef.age }}</span>
+            <span>{{ survivorRef.forenames }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.previousSurname">Previous Surname</span></dt>
+          <dd>
+            <span>{{ survivorRef.previousSurname }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.dob">Dob</span></dt>
+          <dd>
+            <span>{{ survivorRef.dob | formatMediumDate }}</span>
           </dd>
           <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.gender">Gender</span></dt>
           <dd>
             <span [jhiTranslate]="'medicalLaboratoryCouncilApp.Gender.' + (survivorRef.gender ?? 'null')">{{
               { null: '', Male: 'Male', Female: 'Female', Unknown: 'Unknown' }[survivorRef.gender ?? 'null']
-            }}</span>
-          </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.latitude">Latitude</span></dt>
-          <dd>
-            <span>{{ survivorRef.latitude }}</span>
-          </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.longitude">Longitude</span></dt>
-          <dd>
-            <span>{{ survivorRef.longitude }}</span>
-          </dd>
-          <dt><span jhiTranslate="medicalLaboratoryCouncilApp.survivor.status">Status</span></dt>
-          <dd>
-            <span [jhiTranslate]="'medicalLaboratoryCouncilApp.InfectionStatus.' + (survivorRef.status ?? 'null')">{{
-              { null: '', Normal: 'Normal', Infected: 'Infected', Contaminated: 'Contaminated' }[survivorRef.status ?? 'null']
             }}</span>
           </dd>
         </dl>

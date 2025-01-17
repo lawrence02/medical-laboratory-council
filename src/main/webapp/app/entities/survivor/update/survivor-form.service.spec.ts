@@ -20,13 +20,12 @@ describe('Survivor Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            survivorId: expect.any(Object),
-            name: expect.any(Object),
-            age: expect.any(Object),
+            registrationNumber: expect.any(Object),
+            surname: expect.any(Object),
+            forenames: expect.any(Object),
+            previousSurname: expect.any(Object),
+            dob: expect.any(Object),
             gender: expect.any(Object),
-            latitude: expect.any(Object),
-            longitude: expect.any(Object),
-            status: expect.any(Object),
           }),
         );
       });
@@ -37,13 +36,12 @@ describe('Survivor Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            survivorId: expect.any(Object),
-            name: expect.any(Object),
-            age: expect.any(Object),
+            registrationNumber: expect.any(Object),
+            surname: expect.any(Object),
+            forenames: expect.any(Object),
+            previousSurname: expect.any(Object),
+            dob: expect.any(Object),
             gender: expect.any(Object),
-            latitude: expect.any(Object),
-            longitude: expect.any(Object),
-            status: expect.any(Object),
           }),
         );
       });

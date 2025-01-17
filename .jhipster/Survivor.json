@@ -6,34 +6,34 @@
   "fields": [
     {
       "documentation": "The survivorId attribute.",
-      "fieldName": "survivorId",
+      "fieldName": "registrationNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "surname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "forenames",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "previousSurname",
       "fieldType": "String"
     },
     {
-      "fieldName": "name",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "age",
-      "fieldType": "Integer"
+      "fieldName": "dob",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "gender",
       "fieldType": "Gender",
+      "fieldValidateRules": ["required"],
       "fieldValues": "Male,Female,Unknown"
-    },
-    {
-      "fieldName": "latitude",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "longitude",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "status",
-      "fieldType": "InfectionStatus",
-      "fieldValues": "Normal,Infected,Contaminated"
     }
   ],
   "name": "Survivor",
